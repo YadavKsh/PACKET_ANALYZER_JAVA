@@ -2,8 +2,6 @@
 
 > A modular network packet analyzer and Deep Packet Inspection (DPI) engine built in Java. Processes `.pcap` files to extract structured insights from raw network traffic — identifying applications, parsing protocols, and extracting domain names from TLS handshakes.
 
-This project is a Java port of [perryvegehan/Packet_analyzer](https://github.com/perryvegehan/Packet_analyzer), originally written in C++. The core architecture, packet flow, and DPI logic are preserved — rewritten from scratch in Java using Pcap4J instead of libpcap directly.
-
 ---
 
 ## 📋 Table of Contents

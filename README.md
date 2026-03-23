@@ -469,22 +469,6 @@ Packet #3
 
 ---
 
-## 🔄 Differences from the C++ Original
-
-| Aspect | C++ Original | Java Port |
-|---|---|---|
-| Packet library | libpcap directly via raw structs | Pcap4J (libpcap Java wrapper) |
-| Byte order handling | Manual `ntohs()` / `ntohl()` calls | `ByteBuffer.order(BIG_ENDIAN)` — matches network order natively |
-| Memory management | Manual (`new` / `delete`, RAII) | JVM garbage collected |
-| Multi-threading | `std::thread`, `std::mutex`, `condition_variable` | `java.util.concurrent` — `BlockingQueue`, `ExecutorService` |
-| Build system | CMake | Maven |
-| Platform | Linux / macOS native | Cross-platform (runs anywhere with JVM + libpcap) |
-| Null safety | `std::optional<std::string>` | `Optional<String>` |
-
-The core logic — PCAP file parsing, protocol decoding, TLS inspection, SNI extraction — is architecturally identical between both versions. The language and library bindings differ; the packet structure knowledge is the same.
-
----
-
 ## 🧠 Key Learnings
 
 Building this project teaches concepts foundational to networking, security, and systems programming:

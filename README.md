@@ -223,7 +223,7 @@ Byte 47:      Flags (bit 1=SYN, bit 4=ACK, bit 0=FIN)
 Bytes 48+:    Payload starts here (offset = 14 + IP_header_len + TCP_header_len)
 ```
 
-> **📌 Network Byte Order:** Network protocols transmit multi-byte integers in **big-endian** order (most significant byte first). Java's `ByteBuffer` defaults to `BIG_ENDIAN`, which matches network byte order natively. This is one advantage of the Java port — C++ requires explicit `ntohs()` and `ntohl()` calls for every field.
+> **📌 Network Byte Order:** Network protocols transmit multi-byte integers in **big-endian** order (most significant byte first). Java's `ByteBuffer` defaults to `BIG_ENDIAN`, which matches network byte order natively.
 
 ---
 

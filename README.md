@@ -1,6 +1,6 @@
 # 🔬 Packet Analyzer — Deep Packet Inspection Engine (Java)
 
-> A modular network packet analyzer and Deep Packet Inspection (DPI) engine built in Java. Processes `.pcap` files to extract structured insights from raw network traffic — identifying applications, parsing protocols, and extracting domain names from TLS handshakes.
+> A modular network packet analyzer and Deep Packet Inspection (DPI) engine built in Java. Processes `.pcap` files to extract structured insights from raw network traffic — identifying applications, parsing protocols, and extracting domain names from TLS handshakes. Inspired by real-world tools like Wireshark.
 
 ---
 
@@ -17,7 +17,6 @@
 - [Setup & Installation](#-setup--installation)
 - [Running the Project](#-running-the-project)
 - [Sample Output](#-sample-output)
-- [Differences from the C++ Original](#-differences-from-the-c-original)
 - [Key Learnings](#-key-learnings)
 - [Future Enhancements](#-future-enhancements)
 
@@ -409,7 +408,7 @@ mvn clean package
    Or run directly from IntelliJ by opening `Main.java` and clicking ▶️ Run.
 
 **Generating a test `.pcap` file:**
-If you don't have a capture file, you can generate one using the Python script included in the original C++ project:
+If you don't have a capture file, you can generate one using the included Python script:
 ```bash
 python3 generate_test_pcap.py
 ```

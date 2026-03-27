@@ -3,10 +3,17 @@ package com.packetanalyzer.controller;
 import com.packetanalyzer.model.PacketInfo;
 import com.packetanalyzer.service.PacketAnalyzerMTService;
 import com.packetanalyzer.service.PacketAnalyzerService;
+import com.packetanalyzer.service.PcapGeneratorService;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -50,5 +57,19 @@ public class PacketController {
             e.printStackTrace();
             return List.of(); // return empty list on error
         }
+    }
+
+    @GetMapping("/generate")
+    public ResponseEntity<Resource> generatePcap() throws Exception {
+
+        PcapGeneratorService generator = new PcapGeneratorService();
+        File file = generator.generateSamplePcap();
+
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sample.pcap")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
     }
 }

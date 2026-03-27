@@ -1,4 +1,4 @@
-# Use official Maven image to build
+# -------- BUILD STAGE --------
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 WORKDIR /app
@@ -6,10 +6,13 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-# Use lightweight JDK to run
+# -------- RUN STAGE --------
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
+
+# 🔥 INSTALL libpcap (THIS FIXES YOUR ERROR)
+RUN apt-get update && apt-get install -y libpcap-dev
 
 COPY --from=build /app/target/*.jar app.jar
 

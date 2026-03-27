@@ -1,6 +1,7 @@
 package com.packetanalyzer.controller;
 
 import com.packetanalyzer.model.PacketInfo;
+import com.packetanalyzer.service.PacketAnalyzerMTService;
 import com.packetanalyzer.service.PacketAnalyzerService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,7 @@ import java.util.List;
 @CrossOrigin // allows frontend calls
 public class PacketController {
 
-    private final PacketAnalyzerService service = new PacketAnalyzerService();
+    private final PacketAnalyzerMTService service = new PacketAnalyzerMTService();
 
     /**
      * API to upload and analyze PCAP file

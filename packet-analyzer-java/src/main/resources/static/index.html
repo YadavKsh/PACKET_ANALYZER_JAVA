@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacketScope</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="app-shell">
+
+    <header class="app-header">
+        <div class="header-left">
+            <div class="logo">
+                <div class="logo-rings">
+                    <span class="ring r1"></span>
+                    <span class="ring r2"></span>
+                    <span class="ring r3"></span>
+                </div>
+                <h1 class="app-title">PacketScope</h1>
+            </div>
+            <div class="header-meta">
+                <span class="version-tag">v2.0</span>
+                <span class="sep">·</span>
+                <span class="live-clock" id="liveClock"></span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="status-pill" id="statusPill">
+                <span class="status-dot"></span>
+                <span id="statusText">Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Upload -->
+    <section class="upload-section">
+        <label class="upload-zone" id="uploadZone" for="file">
+            <input type="file" id="file" class="file-input" accept=".pcap,.pcapng,.csv,.json">
+            <div class="upload-content">
+                <div class="upload-icon-wrap">
+                    <div class="upload-pulse"></div>
+                    <svg width="40" height="40" viewBox="0 0 48 48" fill="none" class="upload-svg">
+                        <path d="M24 32V16M24 16L17 23M24 16L31 23" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 38C8 38 8 42 12 42H36C40 42 40 38 40 38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <p class="upload-heading">Drop your capture file here</p>
+                <p class="upload-sub">or click to browse &nbsp;·&nbsp; .pcap .pcapng .csv .json</p>
+                <div class="file-badge" id="fileBadge" style="display:none;">
+                    <span class="file-badge-dot"></span>
+                    <span id="fileNameLabel"></span>
+                </div>
+            </div>
+        </label>
+        <button class="btn-analyze" id="analyzeBtn" onclick="upload()" disabled>
+            Run Analysis <span class="btn-arrow">→</span>
+        </button>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow" style="display:none;">
+        <div class="stat-card">
+            <span class="stat-glyph">▤</span>
+            <span class="stat-value" id="statTotal">0</span>
+            <span class="stat-label">Packets</span>
+        </div>
+        <div class="stat-card c-teal">
+            <span class="stat-glyph">◈</span>
+            <span class="stat-value" id="statDomains">0</span>
+            <span class="stat-label">Domains</span>
+        </div>
+        <div class="stat-card c-amber">
+            <span class="stat-glyph">⬡</span>
+            <span class="stat-value" id="statProtocols">0</span>
+            <span class="stat-label">Protocols</span>
+        </div>
+        <div class="stat-card c-pink">
+            <span class="stat-glyph">⊕</span>
+            <span class="stat-value" id="statIPs">0</span>
+            <span class="stat-label">Unique IPs</span>
+        </div>
+    </div>
+
+    <!-- Packet Table -->
+    <section class="panel" id="tablePanel" style="display:none;">
+        <div class="panel-header">
+            <div class="panel-title">
+                <span class="panel-dot"></span>
+                Packet Stream
+            </div>
+            <div class="panel-controls">
+                <div class="search-wrap">
+                    <span class="search-ico">⌕</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Filter packets..." oninput="filterTable()">
+                </div>
+                <span class="row-count" id="rowCount"></span>
+            </div>
+        </div>
+        <div class="table-scroll">
+            <table id="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Protocol</th>
+                    <th>Application</th>
+                    <th>Domain</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Domains -->
+    <section class="panel" id="domainsPanel" style="display:none;">
+        <div class="panel-header">
+            <div class="panel-title">
+                <span class="panel-dot teal"></span>
+                Resolved Domains
+            </div>
+            <span class="domain-total" id="domainCount"></span>
+        </div>
+        <div class="domain-grid" id="domains"></div>
+    </section>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

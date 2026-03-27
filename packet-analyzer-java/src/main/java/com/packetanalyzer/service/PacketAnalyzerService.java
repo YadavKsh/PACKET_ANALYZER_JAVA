@@ -14,6 +14,9 @@ import java.util.List;
  * This class acts as a service layer.
  * It connects reader + parser and returns structured results.
  */
+/**
+ * Single-threaded implementation
+ */
 public class PacketAnalyzerService {
 
     private final PcapReader reader = new PcapReader();

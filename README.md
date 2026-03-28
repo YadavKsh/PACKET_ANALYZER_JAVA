@@ -1,5 +1,9 @@
 # 🔬 Packet Analyzer — Deep Packet Inspection Engine (Java)
 
+🌐 **Live Demo:** [https://packet-analyzer-java.onrender.com](https://packet-analyzer-java.onrender.com)
+
+---
+
 > A modular network packet analyzer and Deep Packet Inspection (DPI) engine built in Java. Processes `.pcap` files to extract structured insights from raw network traffic — identifying applications, parsing protocols, and extracting domain names from TLS handshakes. Inspired by real-world tools like Wireshark.
 
 ---
